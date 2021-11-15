@@ -11,6 +11,14 @@
     <a href="/About/">About</a>
     <a href="/Contact/">Contact</a>
 
+    {% if request.user.customer %}
+    Welcome {{request.user.username}} !!!
+    <a href="{% url 'ecomapp:customerLogout' %}">Logout</a>
+    {% else %}
+    <a href="{% url 'ecomapp:customerregistration' %}">Register</a>
+    <a href="{% url 'ecomapp:customerLogin' %}">Login</a>
+    {% endif %}
+
     {% block content %}
     {% endblock %}
 </body>
