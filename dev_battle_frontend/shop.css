@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    background-color: #FFE3E3;
+    
+}
+
+h1{
+    color: rgb(35, 219, 142);
+    
+}
+
+.groceries-wrapper,.clothing-wrapper,.hardware-wrapper,.shops-wrapper{
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+
+.card-wrapper{
+    display: flex;
+    overflow-x: scroll;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    min-width: 240px;
+    margin: 10px;
+}
+
+.card .image{
+    height: 200px;
+    background-color:lightblue;
+}
+
+.card  .Description{
+    padding: 10px;
+    height: 100px;
+    background-color: white;
+    color: gray;
+}
+
+
+
+/* ===========================
+   ====== Search Box ====== 
+   =========================== */
+
+   .search-wrapper{
+       display: flex;
+       justify-content: center;
+   }
+   .search
+   {
+       background-color: white;
+       width: 60vw;
+       margin-top: 10vh;
+       border: 2px solid #a9cddf;
+       overflow: auto;
+       border-radius: 5px;
+       -moz-border-radius: 5px;
+       -webkit-border-radius: 5px;
+   }
+   
+   .search input[type="text"]
+   {
+       border: 0px;
+       width: 67%;
+       padding: 10px 10px;
+   }
+   
+   .search input[type="text"]:focus
+   {
+       outline: 0;
+   }
+   
+   .search input[type="submit"]
+   {
+       border: 0px;
+       background: none;
+       background-color:#a9cddf ;
+       color: #fff;
+       float: right;
+       padding: 10px;
+       border-radius-top-right: 5px;
+       -moz-border-radius-top-right: 5px;
+       -webkit-border-radius-top-right: 5px;
+       border-radius-bottom-right: 5px;
+       -moz-border-radius-bottom-right: 5px;
+       -webkit-border-radius-bottom-right: 5px;
+           cursor:pointer;
+   }
+   
+   /* ===========================
+      ====== Medua Query for Search Box ====== 
+      =========================== */
+   
+   @media only screen and (min-width : 150px) and (max-width : 780px)
+   {
+       .search-wrapper{
+           padding-top: 30px;
+       }
+       .search
+       {
+           width: 95%;
+           margin: 0 auto;
+       }
+   
+   }
