@@ -15,7 +15,7 @@
             <form action="" method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button>register as a Customer</button>
+                <button>register</button>
             </form>
             <p>Already Have an account?</p><a href="{% url 'ecomapp:customerLogin' %}">LogIn here</a>
         </div>
