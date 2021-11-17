@@ -1,5 +1,7 @@
-{% extends 'base.html' %}
+<!--This is customer Registration-->
 
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block title %}Customer Registration{% endblock %}
 
 {% block content %}
@@ -8,17 +10,33 @@
         color : red ;
     }
 </style>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 mx-auto">
-            <h3>Customer Registration Form</h3>
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button>register</button>
-            </form>
-            <p>Already Have an account?</p><a href="{% url 'ecomapp:customerLogin' %}">LogIn here</a>
+<section class="vh-100 bg-image">
+    <div class="mask d-flex align-items-center h-100">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                {{form|crispy}}
+                                <div class="d-flex justify-content-center">
+                                    <button type="button" style="color: white;"
+                                        class="btn btn-success btn-block btn-lg gradient-custom-4">Register</button>
+                                </div>
+                            </form>
+                            <p class="text-center text-muted mt-5 mb-0">Have already an account? <a
+                                href="{% url 'ecomapp:customerLogin' %}" style="text-decoration: none;">Sign In</a></p>   
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
 {% endblock %}
+
+
+
+
