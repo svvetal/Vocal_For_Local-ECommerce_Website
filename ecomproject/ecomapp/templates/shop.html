@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles-landing.css' %}">
+    <link rel="stylesheet" href="{% static 'styles-home.css' %}">
     <link rel="stylesheet" href="{% static 'shop.css' %}">
     <title>Shop</title>
 </head>
@@ -21,7 +21,7 @@
                 <a href="/">Home</a>
             </li>
             <li>
-                <a href="shop/">Shop</a>
+                <a href="">Shop</a>
             </li>
             <li>
                 <a href="#">Profile</a>
@@ -56,7 +56,7 @@
         <h1>{{cat.title}}</h1>
         <div class="card-wrapper">
             {% for p in cat.product_set.all %}
-            <div class="card">
+            <div class="card" style="height: 20%; width: 20%">
                 <div class="image">
                     <img src="{{p.image.url}}" class="img-fluid"
                         style="height : 100% ; width : 100% ; object-fit: cover;">

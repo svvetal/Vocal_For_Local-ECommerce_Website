@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles-home.css' %}">
+    <link rel="stylesheet" href="{% static 'register.css' %}">
+    <title>Sign Up</title>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="{% static 'TheLocalCartlogo.png' %}" width="90px">
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="shop/">Shop</a>
+            </li>
+            <li>
+                <a href="#">Profile</a>
+            </li>
+            <li>
+                <a href="#">logout</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#">Contact Us</a>
+            </li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+    <div class="reg-container">
+        <h1>What kind of profile do you want to create</h1>
+        <br><br><br>
+        <div class="buttonContainer">
+            <button class="button"><a href="register-customer/" style="text-decoration: none; color: white;"><h2>Customer</h2></a></button>
+            
+            <button class="button"><a href="register-seller/" style="text-decoration: none; color: white;"><h2>Seller</h2></a></button>
+        </div>
+
+    </div>
+
+    <script src="{% static 'app.js' %}"></script>
+    
+</body>
+</html>

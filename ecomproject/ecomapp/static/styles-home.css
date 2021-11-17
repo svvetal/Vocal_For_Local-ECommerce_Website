@@ -4,10 +4,10 @@
     box-sizing: border-box;
     font-family: 'Poppins',sans-serif;
 }
+
 body{
-    background-color: white;
-    overflow-x: hidden;
-    
+    background-color: #b4d0de;
+    overflow-x: hidden;  
     
 }
 a{
@@ -15,8 +15,8 @@ a{
     border-radius: 6px;
 }
 
-a:hover{
-    background-color:rgb(11, 207, 126);
+nav a:hover{
+    background-color:#0aa682;
 }
 .scroll-container{
     overflow-y: scroll;
@@ -32,7 +32,7 @@ a:hover{
 
 
 .button{
-    background-color:#FF0075;
+    background-color:#d23662;
     border: none;
     font-family: 'Poppins',sans-serif;
     color: white;
@@ -48,9 +48,9 @@ a:hover{
 nav{
     display: flex;
     justify-content: space-around;
+    background-color: #b4d0de;
     align-items: center;
     min-height: 8vh;
-    background-color: #a9cddf;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -96,7 +96,7 @@ nav{
 .opener{
     display: flex;
     height: 92vh;
-    background-color: #a9cddf;
+    
 }
 
 
@@ -110,7 +110,7 @@ nav{
 
 .col-1 h1{
     font-size: 60px;
-    color: #FF0075;
+    color: #d23662;
     font-family: 'Poppins',sans-serif;
     font-weight: bold;
 }
@@ -139,7 +139,9 @@ nav{
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    background-color: #FFE3E3;
+    background-color: #0aa682;
+    padding-bottom: 20px;
+
 }
 
 .middle .row1,.row2{
@@ -148,10 +150,11 @@ nav{
 
 .part-1{
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
     min-width: 50vw;
     height: 50vh;
+    
 }
 
 .inner{
@@ -159,42 +162,45 @@ nav{
     align-items: center;
     justify-content: center;
     height: 45vh;
-    min-width: 45vw;
+    min-width: 80vh;
     color: #fff;
-    background-color: white;
-    border-radius: 0 0 25vw 25vw;
-    background-color:rgb(11, 207, 126);
+    border-radius: 0vw 25vw 25vw 0vw;
+    background-color:rgb(0, 34, 184);
 }
+
 
 .part-2{
     margin: 20px;
     padding: 50px;
-    min-width: 40vw;
     height: 45vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:#FF0075;
+    background-color:#d23662;
     color: white;
     font-size: 25px;
-    border: 10px solid white;
-    border-radius: 30px;
-    text-shadow: gray;
+    
     
 }
-
+.row2 .part-1{
+    justify-content: flex-end;
+}
 .row2 .part-1 .inner{
-    border-radius: 25vw 25vw 0 0;
+    border-radius: 25vw 0vw 0vw 25vw;
 
+
+}
+.row2 .part-2{
+    background-color: #d23662;
 }
 
 .row2 .part-1{
-    align-items: flex-end;
+    align-items: center;
 }
 
 .curve{
     height: 100vh;
-    background-color:#32C1CD;
+    background-color:#d03360;
 }
 
 .inner-curve{
@@ -203,9 +209,8 @@ nav{
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-color:#d03360;
     border-radius: 0 0 50vw 50vw;
-    background-color:#FF0075 ;
-    border: 5px solid white;
     border-top: 0;
 }
 
@@ -227,13 +232,13 @@ nav{
     align-items: center;
     justify-content: center;
     font-size: 25px;
-    color: rgb(11, 207, 126);
+    color: white;
     font-weight: bold;
     border: 5px solid rgb(3, 90, 189);
     height: 30vh;
     width: 30vh;
     border-radius: 50%;
-    background-color:rgb(155, 248, 255);
+    background-color:rgb(158, 227, 255);
 }
 
 .circle-container img{
@@ -263,6 +268,13 @@ nav{
    }
    .row1{
        flex-direction: column;
+   }
+   .part-1,.row2 .part-1{
+       justify-content: center;
+   }
+   .inner{
+       min-width: 45vh;
+       min-height: 45vh;
    }
    .part-2{
        font-size: 1.3rem;
@@ -317,7 +329,7 @@ nav{
         right: 0px;
         height: 92vh;
         top: 8vh;
-        background-color:#a9cddf;
+        background-color: #b4d0de;
         display: flex;
         flex-direction: column;
         align-items: center;
