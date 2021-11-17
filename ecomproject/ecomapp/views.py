@@ -87,4 +87,13 @@ class SearchView(TemplateView):
         context['results'] = results
         return context
 
+class ProductDetailView(TemplateView):
+    template_name = "productdetailview.html"
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        slug = self.kwargs.get("slug")
+        context['product'] = Product.objects.get(slug = slug)
+
+        return context
+
 

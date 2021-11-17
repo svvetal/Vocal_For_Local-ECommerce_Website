@@ -7,7 +7,7 @@ All products
 {% for cat in allcategories %}
 {{cat.title}}
 {% for p in cat.product_set.all %}
-<h3>{{p.title}}</h3>
+<h4><a href = "">{{p.title}}</a></h4>
 <img src="{{p.image.url}}" alt="" width="200">
 <p>Price : <strike>Rs. {{p.marked_price}}</strike>Rs. {{p.selling_price}}</p>
 <button><a href="">Add to Cart</a></button>
