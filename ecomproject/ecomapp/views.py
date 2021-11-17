@@ -11,7 +11,7 @@ from django.db.models import Q
 
 # Create your views here.
 class HomeView(TemplateView):
-    template_name = "landing.html"
+    template_name = "home.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -42,27 +42,16 @@ class ShopView(TemplateView):
         context['allcategories'] = Category.objects.all()
         return context
 
-class CustomerRegistrationView(CreateView):
-    template_name = "customerregistration.html"
-    form_class = CustomerRegistrationForm
-    success_url = reverse_lazy("ecomapp:home")
-
-    def form_valid(self , form):
-        username = form.cleaned_data.get("username")
-        password = form.cleaned_data.get("password")
-        email = form.cleaned_data.get("email")
-        user = User.objects.create_user(username , email , password)
-        form.instance.user = user
-        login(self.request , user)
-        return super().form_valid(form)
-
+class CustomerRegistrationView(TemplateView):
+    template_name = "register.html"
+    
 class CustomerLogoutView(View):
     def get(self , request):
         logout(request)
         return redirect("ecomapp:landing")
 
 class CustomerLoginView(FormView):
-    template_name = "customerlogin.html"
+    template_name = "login.html"
     form_class = CustomerLoginForm
     success_url = reverse_lazy("ecomapp:landing")
 
@@ -77,6 +66,22 @@ class CustomerLoginView(FormView):
 
         return super().form_valid(form)
 
+class CustormerRegisterView(CreateView):
+    template_name = "register-customer.html"
+    form_class = CustomerRegistrationForm
+    success_url = reverse_lazy("ecomapp:home")
+
+    def form_valid(self , form):
+        username = form.cleaned_data.get("username")
+        password = form.cleaned_data.get("password")
+        email = form.cleaned_data.get("email")
+        user = User.objects.create_user(username , email , password)
+        form.instance.user = user
+        login(self.request , user)
+        return super().form_valid(form)
+
+class SellerRegisterView(CreateView):
+    template_name = "register-seller.html"
 
 class SearchView(TemplateView):
     template_name = "search.html"
