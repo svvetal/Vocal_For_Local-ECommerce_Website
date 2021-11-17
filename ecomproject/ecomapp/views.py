@@ -6,6 +6,8 @@ from .models import *
 from .forms import CustomerRegistrationForm , CustomerLoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login , logout
+from django.db.models import Q
+
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -73,4 +75,16 @@ class CustomerLoginView(FormView):
             return render(self.request , self.template_name , {"form" : self.form_class , "error" : "Invalid Credentials"})
 
         return super().form_valid(form)
+
+
+class SearchView(TemplateView):
+    template_name = "search.html"
+
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        kw = self.request.GET.get("keyword")
+        results = Product.objects.filter(Q(title__icontains=kw) | Q(description__icontains=kw))
+        context['results'] = results
+        return context
+
 

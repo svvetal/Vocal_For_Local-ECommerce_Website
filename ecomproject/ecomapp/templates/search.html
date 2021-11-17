@@ -1,3 +1,6 @@
+
+
+{% block content%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,19 +21,19 @@
         </div>
         <ul class="nav-links">
             <li>
-                <a href="/">Home</a>
+                <a replace="/">Home</a>
             </li>
             <li>
-                <a href="shop/">Shop</a>
+                <a replace="shop/">Shop</a>
             </li>
             <li>
-                <a href="#">Profile</a>
+                <a replace="#">Profile</a>
             </li>
             <li>
-                <a href="#">About</a>
+                <a replace="#">About</a>
             </li>
             <li>
-                <a href="#">Contact Us</a>
+                <a replace="#">Contact Us</a>
             </li>
         </ul>
         <div class="burger">
@@ -76,3 +79,24 @@
 </body>
 
 </html>
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-12">
+            <h1>Search results for ...<span class = "text-info" style = "color:blue">"{{request.GET.keyword}}"</span></h1>
+            <hr>
+            {%for result in results%}
+            <div class = "col-md-3">
+                <div class = "card">
+                    <img src = "{{result.image.url}}" class = "card-img-top">
+                    <div class = "card-body">
+                        <h5 class = "card-title">{{result.title}}</h5>
+                        <p class = "card-text">{{result.description}}</p>
+                        <a href = "{{result.get_absolute_url}}" class = "btn btn-primary">View Product</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div
+</div>
+
+{% endblock %}

@@ -11,4 +11,5 @@ urlpatterns = [
     path('login/' , CustomerLoginView.as_view() , name = "customerLogin"),
     path('all-products/' , AllProductsView.as_view() , name = "allproducts"),
     path('shop/' , ShopView.as_view() , name = "shop"),
+    path('search/',SearchView.as_view(),name="search"),
 ]
