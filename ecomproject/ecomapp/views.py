@@ -48,12 +48,12 @@ class CustomerRegistrationView(TemplateView):
 class CustomerLogoutView(View):
     def get(self , request):
         logout(request)
-        return redirect("ecomapp:landing")
+        return redirect("ecomapp:home")
 
 class CustomerLoginView(FormView):
     template_name = "login.html"
     form_class = CustomerLoginForm
-    success_url = reverse_lazy("ecomapp:landing")
+    success_url = reverse_lazy("ecomapp:home")
 
     def form_valid(self , form):
         uname = form.cleaned_data["username"]
