@@ -33,6 +33,7 @@ class AboutView(TemplateView):
 class ContactView(TemplateView):
     template_name = "contact.html"
 
+
 class ShopView(TemplateView):
     template_name = "shop.html"
 
@@ -58,12 +59,12 @@ class CustomerRegistrationView(CreateView):
 class CustomerLogoutView(View):
     def get(self , request):
         logout(request)
-        return redirect("ecomapp:home")
+        return redirect("ecomapp:landing")
 
 class CustomerLoginView(FormView):
     template_name = "customerlogin.html"
     form_class = CustomerLoginForm
-    success_url = reverse_lazy("ecomapp:home")
+    success_url = reverse_lazy("ecomapp:landing")
 
     def form_valid(self , form):
         uname = form.cleaned_data["username"]
