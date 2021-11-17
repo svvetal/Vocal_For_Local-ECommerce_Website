@@ -1,0 +1,41 @@
+.top{
+    text-align: center;
+    margin-top: 10px;
+}
+h2{
+    color: black;
+}
+.information{
+    display: flex;
+    color: black;
+}
+.imag{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d23662;
+    min-height: 80px;
+    width: 30vw;
+}
+
+.info{
+    background-color: #0aa682;
+    width: 70vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+.personal{
+    display: flex;
+    align-items: center;
+    height: 33.33%;
+}
+
+.pic-circle{
+    margin-right: 20px;
+    margin-left: 20px;
+    background-color: gold;
+    height: 24.67vh;
+    width: 24.67vh;
+    border-radius: 50%;
+}
