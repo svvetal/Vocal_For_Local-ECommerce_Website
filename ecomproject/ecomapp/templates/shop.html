@@ -45,21 +45,11 @@
     <div class="search-wrapper">
         <div class="search">
             <div class="search-form">
-<<<<<<< Updated upstream
+
             <form action = "{% url 'ecomapp:search'%}" method = "GET">
                 <input type="text" name = "keyword" placeholder="Search for groceries, clothing and more..."required>
                 <button>Search Product</button>
-=======
-<<<<<<< HEAD
-            <form action = "" method = "GET">
-                <input type="text" name = "keyword" placeholder="Search for groceries, clothing and more..."required>
-                <input type="submit" value="Submit">
-=======
-            <form action = "{% url 'ecomapp:search'%}" method = "GET">
-                <input type="text" name = "keyword" placeholder="Search for groceries, clothing and more..."required>
-                <button>Search Product</button>
->>>>>>> f0fc3efc8a8d34d47ec76641223f2c4aee9366fe
->>>>>>> Stashed changes
+
             </form>
             </div>
         </div>
@@ -76,7 +66,7 @@
                         style="height : 100% ; width : 100% ; object-fit: cover;">
                 </div>
                 <div class="Description">
-                    <h3>{{p.title}}</h3>
+                    <h3><a href="{%url 'ecomapp:productdetailview' p.slug%}">{{p.title}}</a></h3>
                     <p>Price : <strike>Rs. {{p.marked_price}}</strike>Rs. {{p.selling_price}}</p>
                 </div>
             </div>

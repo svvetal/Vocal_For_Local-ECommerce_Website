@@ -87,9 +87,8 @@
                 <div class = "card">
                     <img src = "{{result.image.url}}" class = "card-img-top">
                     <div class = "card-body">
-                        <h5 class = "card-title">{{result.title}}</h5>
+                        <h2 class = "card-title"><a href = "{%url 'ecomapp:productdetailview' result.slug%}">{{result.title}}</a></h2>
                         <p class = "card-text">{{result.description}}</p>
-                        <a href = "{%url 'ecomapp:product' p.slug%}" class = "btn btn-primary">View Product</a>
                     </div>
                 </div>
             {% endfor %}
