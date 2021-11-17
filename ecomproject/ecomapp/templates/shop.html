@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'shop.css' %}">
     <title>Shop</title>
 </head>
+
 <body>
     <nav>
         <div class="logo">
@@ -38,8 +40,8 @@
         </div>
     </nav>
 
-    
-    
+
+
     <div class="search-wrapper">
         <div class="search">
             <form class="search-form">
@@ -49,169 +51,26 @@
         </div>
     </div>
     <br><br><br>
+    {% for cat in allcategories %}
     <div class="shops-wrapper">
-        <h1>Listed Shops</h1>
+        <h1>{{cat.title}}</h1>
         <div class="card-wrapper">
+            {% for p in cat.product_set.all %}
             <div class="card">
-                <div class="image"></div>
+                <div class="image">
+                    <img src="{{p.image.url}}" class="img-fluid"
+                        style="height : 100% ; width : 100% ; object-fit: cover;">
+                </div>
                 <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
+                    <h3>{{p.title}}</h3>
+                    <p>Price : <strike>Rs. {{p.marked_price}}</strike>Rs. {{p.selling_price}}</p>
                 </div>
             </div>
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
-    <br><br><br>
-    <div class="groceries-wrapper">
-        <h1>Groceries</h1>
-        <div class="card-wrapper">
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br><br><br>
-    <div class="clothing-wrapper">
-        <h1>Apparel</h1>
-        <div class="card-wrapper">
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br><br><br>
-    <div class="hardware-wrapper">
-        <h1>Hardware</h1>
-        <div class="card-wrapper">
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description"> 
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 70</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image"></div>
-                <div class="Description">
-                    <h3>Rs. 120</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, similique?</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+    {% endfor %}
+
 </body>
+
 </html>
