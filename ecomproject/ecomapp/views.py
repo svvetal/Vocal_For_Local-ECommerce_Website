@@ -6,6 +6,8 @@ from .models import *
 from .forms import CustomerRegistrationForm , CustomerLoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login , logout
+from django.db.models import Q
+
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -31,6 +33,7 @@ class AboutView(TemplateView):
 class ContactView(TemplateView):
     template_name = "contact.html"
 
+
 class ShopView(TemplateView):
     template_name = "shop.html"
 
@@ -45,12 +48,12 @@ class CustomerRegistrationView(TemplateView):
 class CustomerLogoutView(View):
     def get(self , request):
         logout(request)
-        return redirect("ecomapp:home")
+        return redirect("ecomapp:landing")
 
 class CustomerLoginView(FormView):
     template_name = "login.html"
     form_class = CustomerLoginForm
-    success_url = reverse_lazy("ecomapp:home")
+    success_url = reverse_lazy("ecomapp:landing")
 
     def form_valid(self , form):
         uname = form.cleaned_data["username"]
@@ -79,3 +82,24 @@ class CustormerRegisterView(CreateView):
 
 class SellerRegisterView(CreateView):
     template_name = "register-seller.html"
+
+class SearchView(TemplateView):
+    template_name = "search.html"
+
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        kw = self.request.GET.get("keyword")
+        results = Product.objects.filter(Q(title__icontains=kw) | Q(description__icontains=kw))
+        context['results'] = results
+        return context
+
+class ProductDetailView(TemplateView):
+    template_name = "productdetailview.html"
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        slug = self.kwargs.get("slug")
+        context['product'] = Product.objects.get(slug = slug)
+
+        return context
+
+

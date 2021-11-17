@@ -1,3 +1,4 @@
+{% block content%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,28 +7,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles-home.css' %}">
-    <link rel="stylesheet" href="{% static 'css/shop.css' %}">
+    <link rel="stylesheet" href="{% static 'styles-landing.css' %}">
+    <link rel="stylesheet" href="{% static 'shop.css' %}">
     <title>Shop</title>
 </head>
 
 <body>
     <nav>
         <div class="logo">
-            <img src="{% static 'images/TheLocalCartlogo.png'%}" width="90px">
+            <h4>Ecommerce</h4>
         </div>
         <ul class="nav-links">
             <li>
-                <a href="{% url 'ecomapp:landing' %}">Home</a>
+                <a href="/">Home</a>
             </li>
             <li>
-                <a href="">Shop</a>
+                <a href="shop/">Shop</a>
             </li>
             <li>
                 <a href="#">Profile</a>
             </li>
             <li>
-                <a href="{% url 'ecomapp:about' %}">About</a>
+                <a href="#">About</a>
             </li>
             <li>
                 <a href="#">Contact Us</a>
@@ -45,11 +46,9 @@
     <div class="search-wrapper">
         <div class="search">
             <div class="search-form">
-
             <form action = "{% url 'ecomapp:search'%}" method = "GET">
                 <input type="text" name = "keyword" placeholder="Search for groceries, clothing and more..."required>
                 <button>Search Product</button>
-
             </form>
             </div>
         </div>
@@ -60,13 +59,13 @@
         <h1>{{cat.title}}</h1>
         <div class="card-wrapper">
             {% for p in cat.product_set.all %}
-            <div class="card" style="height: 20%; width: 20%">
+            <div class="card">
                 <div class="image">
                     <img src="{{p.image.url}}" class="img-fluid"
                         style="height : 100% ; width : 100% ; object-fit: cover;">
                 </div>
                 <div class="Description">
-                    <h3><a href="{%url 'ecomapp:productdetailview' p.slug%}">{{p.title}}</a></h3>
+                    <h3>{{p.title}}</h3>
                     <p>Price : <strike>Rs. {{p.marked_price}}</strike>Rs. {{p.selling_price}}</p>
                 </div>
             </div>
@@ -75,8 +74,26 @@
     </div>
     {% endfor %}
 
-    <script src="{% static 'app.js' %}"></script>
-
 </body>
 
 </html>
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-12">
+            <h1>Search results for ...<span class = "text-info" style = "color:blue">"{{request.GET.keyword}}"</span></h1>
+            <hr>
+            {%for result in results%}
+            <div class = "col-md-3">
+                <div class = "card">
+                    <img src = "{{result.image.url}}" class = "card-img-top">
+                    <div class = "card-body">
+                        <h2 class = "card-title"><a href = "{%url 'ecomapp:productdetailview' result.slug%}">{{result.title}}</a></h2>
+                        <p class = "card-text">{{result.description}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div
+</div>
+
+{% endblock %}
