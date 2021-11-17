@@ -11,8 +11,9 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles-home.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles-landing.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
@@ -29,7 +30,10 @@
                 </div>
                 <ul class="nav-links">
                     <li>
-                        <a href="shop.html">Shop</a>
+                        <a href="">Home</a>
+                    </li>
+                    <li>
+                        <a href="shop/">Shop</a>
                     </li>
                     <li>
                         <a href="#">Profile</a>
@@ -64,7 +68,7 @@
 
                 </div>
                 <div class="col-2">
-                    <img src="m9-removebg-preview.png" alt="Vector">
+                    <img src="{% static 'm9-removebg-preview.png' %}" alt="Vector">
                 </div>
             </section>
         </div>
@@ -101,9 +105,9 @@
                     <br><br><br>
                     <div class="circle-container">
                         <div class="circle">Your Business</div>
-                        <img src="apple-touch-icon.png">
+                        <img src="{% static 'apple-touch-icon.png' %}">
                         <div class="circle">Our Platform</div>
-                        <img src="apple-touch-icon1.png">
+                        <img src="{% static 'apple-touch-icon1.png' %}">
                         <div class="circle">Growth</div>
                     </div>
                 </div>
