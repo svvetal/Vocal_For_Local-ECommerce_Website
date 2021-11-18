@@ -7,6 +7,9 @@ from .forms import CustomerRegistrationForm , CustomerLoginForm, SellerLoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login , logout
 from django.db.models import Q
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required 
+
 
 
 # Create your views here.
@@ -116,6 +119,10 @@ class SellerLoginView(FormView):
 class SellerAdminView(TemplateView):
     template_name = "seller-admin.html"
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['allproducts'] = Product.objects.all()
@@ -123,6 +130,10 @@ class SellerAdminView(TemplateView):
 
 class SearchView(TemplateView):
     template_name = "search.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
@@ -133,6 +144,11 @@ class SearchView(TemplateView):
 
 class ProductDetailView(TemplateView):
     template_name = "productdetailview.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
         slug = self.kwargs.get("slug")
@@ -142,6 +158,11 @@ class ProductDetailView(TemplateView):
 
 class AddToCartView(TemplateView):
     template_name = "addtocartview.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
         product_obj = Product.objects.get(id = self.kwargs.get('pro_id'))
@@ -177,6 +198,10 @@ class AddToCartView(TemplateView):
 class CartView(TemplateView):
     template_name = "cart.html"
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
         cart_id = self.request.session.get("cart_id",None)
@@ -189,6 +214,11 @@ class CartView(TemplateView):
         return context
 
 class ManageCartView(View):
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
     def get(self , request , *args , **kwargs):
         
         cp_id = self.kwargs.get("cp_id")
