@@ -10,7 +10,7 @@ All products
 <h4><a href = "">{{p.title}}</a></h4>
 <img src="{{p.image.url}}" alt="" width="200">
 <p>Price : <strike>Rs. {{p.marked_price}}</strike>Rs. {{p.selling_price}}</p>
-<button><a href="">Add to Cart</a></button>
+<button><a href="{%url 'ecomapp:addtocart' p.id%}">Add to Cart</a></button>
 {% endfor %}
 {% endfor %}
 {% endblock %}

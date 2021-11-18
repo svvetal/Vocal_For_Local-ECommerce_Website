@@ -7,7 +7,7 @@ class Customer(models.Model):
     full_name = models.CharField(max_length=200)
     address = models.CharField(max_length=200 , null=True , blank=True)
     joined_on = models.DateTimeField(auto_now_add=True)
-
+    
     def __str__(self):
         return self.full_name
 
@@ -28,6 +28,7 @@ class Product(models.Model):
     description = models.TextField()
     warranty = models.CharField(max_length=300 , null=True, blank=True)
     view_count = models.PositiveIntegerField(default=0)
+    id = models.PositiveBigIntegerField(primary_key=True)
 
     def __str__(self):
         return self.title

@@ -102,4 +102,50 @@ class ProductDetailView(TemplateView):
 
         return context
 
+class AddToCartView(TemplateView):
+    template_name = "addtocartview.html"
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        product_obj = Product.objects.get(id = self.kwargs.get('pro_id'))
 
+        cart_id = self.request.session.get("cart_id",None)
+        if cart_id:
+            #try initilazing the cart object with customer username
+            cart = Cart.objects.get(id = cart_id)
+            product_already_in_cart = cart.cartproduct_set.filter(product = product_obj)
+            if product_already_in_cart.exists():
+                cart_product = product_already_in_cart.first()
+                cart_product.quantity += 1
+                cart_product.subtotal += product_obj.selling_price
+                cart_product.save()
+                cart.total += product_obj.selling_price
+                cart.save()
+            else:
+                cart_product = CartProduct.objects.create(cart = cart , product = product_obj , rate = product_obj.selling_price , quantity = 1 , subtotal = product_obj.selling_price)
+                cart.total += product_obj.selling_price
+                cart.save()
+        else:
+            cart = Cart.objects.create(total=0)
+            self.request.session['cart_id'] = cart.id
+            cart_product = CartProduct.objects.create(cart = cart , product = product_obj , rate = product_obj.selling_price , quantity = 1 , subtotal = product_obj.selling_price)
+            cart.total += product_obj.selling_price
+            cart.save()
+        context['cart'] = cart
+        return context
+
+ 
+
+
+class CartView(TemplateView):
+    template_name = "cart.html"
+
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        cart_id = self.request.session.get("cart_id",None)
+        if cart_id:
+            cart = Cart.objects.get(id = cart_id)
+            context['cart'] = cart
+        else:
+            context['cart'] = None
+        
+        return context

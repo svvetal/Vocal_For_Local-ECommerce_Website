@@ -14,7 +14,7 @@
     </script>
     <p>{{product.warranty}}</p>
     <img src = "{{product.image.url}}">
-    <button><a href="">Add to Cart</a></button>
+    <button><a href="{%url 'ecomapp:addtocart' product.id%}">Add to Cart</a></button>
     <button><a href="">Buy Now!</a></button>
 </div>
 
