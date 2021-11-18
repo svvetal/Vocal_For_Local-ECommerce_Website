@@ -53,7 +53,7 @@ class CustomerLogoutView(View):
 class CustomerLoginView(FormView):
     template_name = "login.html"
     form_class = CustomerLoginForm
-    success_url = reverse_lazy("ecomapp:home")
+    success_url = reverse_lazy("ecomapp:shop")
 
     def form_valid(self , form):
         uname = form.cleaned_data["username"]
@@ -69,7 +69,7 @@ class CustomerLoginView(FormView):
 class CustormerRegisterView(CreateView):
     template_name = "register-customer.html"
     form_class = CustomerRegistrationForm
-    success_url = reverse_lazy("ecomapp:home")
+    success_url = reverse_lazy("ecomapp:shop")
 
     def form_valid(self , form):
         username = form.cleaned_data.get("username")

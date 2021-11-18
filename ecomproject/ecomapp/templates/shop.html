@@ -38,6 +38,12 @@
             <div class="line2"></div>
             <div class="line3"></div>
         </div>
+        {% if request.user.customer %}
+        {{ request.user.username }}
+        <a href="{% url 'ecomapp:customerLogout' %}">Logout</a>
+        {% else %}
+        <a href="{url 'ecomapp:home'}"></a>
+        {% endif %}
     </nav>
 
 
@@ -46,11 +52,11 @@
         <div class="search">
             <div class="search-form">
 
-            <form action = "{% url 'ecomapp:search'%}" method = "GET">
-                <input type="text" name = "keyword" placeholder="Search for groceries, clothing and more..."required>
-                <button>Search Product</button>
+                <form action="{% url 'ecomapp:search'%}" method="GET">
+                    <input type="text" name="keyword" placeholder="Search for groceries, clothing and more..." required>
+                    <button>Search Product</button>
 
-            </form>
+                </form>
             </div>
         </div>
     </div>
