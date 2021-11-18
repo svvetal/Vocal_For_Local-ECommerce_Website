@@ -28,7 +28,9 @@
                         <td>{{item.product.selling_price}}</td>
                         <td>{{ item.subtotal }}</td>
                         <td>
-                            <a href="">Remove</a>
+                             <a href="{%url 'ecomapp:managecart' item.id%}?action=inc" class = "btn btn-primary">+</a>
+                            <a href="{%url 'ecomapp:managecart' item.id%}?action=dec" class = "btn btn-warning"> -</a>
+                            <a href="{%url 'ecomapp:managecart' item.id%}?action=rem" class = "btn btn-danger">Remove</a>
                         </td>
                     </tr>
                     {% endfor %}

@@ -4,34 +4,42 @@
     <div class = "row">
         <div class = "col-md-8">
             <br><br>
-            <h3>Product added to Cart Successfully</h3>
             <h1>My Cart</h1>
             <br>
             <hr>
             <table class = "table">
                 <thead>
                     <tr>
+                        <th>Serial No.</th>
                         <th>Image</th>
                         <th>Product</th>
                         <th>Quantity</th>
                         <th>Price</th>
                         <th>Total</th>
-                        <th>Action</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for item in cart.cartproduct_set.all %}
                     <tr>
-                        <td><img src="{{item.product.image.url }}" width="100px"></td>
+                        <td>{{ forloop.counter}}</td>
+                        <td><img src="{{item.product.image.url}}" width="100px"></td>
                         <td>{{ item.product.title }}</td>
                         <td>{{ item.quantity }}</td>
                         <td>{{item.product.selling_price}}</td>
                         <td>{{ item.subtotal }}</td>
                         <td>
-                            <a href="">Remove</a>
+                            <a href="{%url 'ecomapp:managecart' item.id%}?action=inc" class = "btn btn-primary">+</a>
+                            <a href="{%url 'ecomapp:managecart' item.id%}?action=dec" class = "btn btn-warning"> -</a>
+                            <a href="{%url 'ecomapp:managecart' item.id%}?action=rem" class = "btn btn-danger">Remove</a>
                         </td>
                     </tr>
                     {% endfor %}
+                    <tr>
+                        <td colspan="5" align="right"> Total</td>
+                        <td>Rs.{{cart.total}}</td>
+                        
+                        </tr>
                 </tbody>
 
                 <button class="btn btn-info">Proceed to buy</button>
