@@ -58,3 +58,16 @@ class SellerRegistrationForm(forms.ModelForm):
             raise forms.ValidationError("Customer with this Username already Exists")
 
         return uname
+
+class SellerLoginForm(forms.ModelForm):
+    username = forms.CharField(widget=forms.TextInput())
+    password = forms.CharField(widget=forms.PasswordInput())
+    class Meta:
+        model = Seller
+        fields = ["username" , "password"]
+
+    def __init__(self , *args , **kwargs):
+        super (SellerLoginForm , self).__init__(*args , **kwargs)
+
+        self.fields["username"].widget.attrs['class'] = 'form-control'
+        self.fields["password"].widget.attrs['class'] = 'form-control'

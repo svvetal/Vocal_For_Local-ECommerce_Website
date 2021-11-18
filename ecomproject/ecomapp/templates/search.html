@@ -41,12 +41,21 @@
                 {%for result in results%}
                 <div class = "col-md-3">
                     <div class = "card">
-                        <img src = "{{result.image.url}}" class = "card-img-top">
-                        <div class = "card-body">
-                            <h2 class = "card-title"><a href = "{%url 'ecomapp:productdetailview' result.slug%}">{{result.title}}</a></h2>
+                        <div class="image">
+                            <img src="{{result.image.url}}" class="img-fluid"
+                                style="height : 100% ; width : 100% ; object-fit: cover;">
+                        </div>
+                        <div class="Description">
+                            <h2 class = "card-title"><a href = "{%url 'ecomapp:productdetailview' result.slug%}" style="text-decoration: none; color: black;">{{result.title}}</a></h2>
+                            <p>Price : <strike>Rs. {{result.marked_price}}</strike>Rs. {{result.selling_price}}</p>
                             <p class = "card-text">{{result.description}}</p>
                         </div>
+                        
                     </div>
+                </div>
+                
+                    
+                    
                 {% endfor %}
             </div>
         </div>

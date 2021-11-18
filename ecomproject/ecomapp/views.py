@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from django.views.generic import TemplateView , CreateView , View , FormView
 from django.urls import reverse_lazy
 from .models import *
-from .forms import CustomerRegistrationForm , CustomerLoginForm, SellerRegistrationForm
+from .forms import CustomerRegistrationForm , CustomerLoginForm, SellerLoginForm, SellerRegistrationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login , logout
 from django.db.models import Q
@@ -43,7 +43,10 @@ class ShopView(TemplateView):
 
 class CustomerRegistrationView(TemplateView):
     template_name = "register.html"
-    
+
+class LoginView(TemplateView):
+    template_name = "login_as.html"
+
 class CustomerLogoutView(View):
     def get(self , request):
         logout(request)
@@ -93,8 +96,30 @@ class SellerRegisterView(CreateView):
         login(self.request , user)
         return super().form_valid(form)
 
+class SellerLoginView(FormView):
+    template_name = "login.html"
+    form_class = SellerLoginForm
+    success_url = reverse_lazy("ecomapp:selleradmin")
+
+    def form_valid(self , form):
+        uname = form.cleaned_data["username"]
+        pword = form.cleaned_data["password"]
+        usr = authenticate(username = uname , password = pword)
+        if usr is not None and usr.seller:
+            login(self.request , usr)
+        else:
+            return render(self.request , self.template_name , {"form" : self.form_class , "error" : "Invalid Credentials"})
+
+        return super().form_valid(form)
+    
+
 class SellerAdminView(TemplateView):
     template_name = "seller-admin.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['allproducts'] = Product.objects.all()
+        return context
 
 class SearchView(TemplateView):
     template_name = "search.html"

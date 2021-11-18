@@ -28,7 +28,7 @@
         </div>
         <ul class="nav-links">
             <li>
-                <a href="shop/">Shop</a>
+                <a href="{% url 'ecomapp:shop' %}">Shop</a>
             </li>
             <li>
                 <a href="#">Profile</a>
@@ -37,7 +37,7 @@
                 <a href="#">logout</a>
             </li>
             <li>
-                <a href="#">About</a>
+                <a href="{% url 'ecomapp:about' %}">About</a>
             </li>
             <li>
                 <a href="#">Contact Us</a>
@@ -65,7 +65,7 @@
                                     <button style="color: white;" class="btn btn-success btn-block btn-lg gradient-custom-4">Register</button>
 
                                     <p class="text-center text-muted mt-5 mb-0">Have already an account? <a
-                                            href="{% url 'ecomapp:customerLogin' %}" style="text-decoration: none;">Sign In</a></p>
+                                            href="{% url 'ecomapp:customerlogin' %}" style="text-decoration: none;">Sign In</a></p>
 
                                 </form>
 

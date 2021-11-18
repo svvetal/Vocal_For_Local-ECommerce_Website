@@ -26,39 +26,42 @@
         <div class="scroll-area">
             <nav>
                 <div class="logo">
-                    <img src="{% static 'images/TheLocalCartlogo.png' %}" width="90px">
+                    <img src="{% static 'images/TheLocalCartlogo.png'%}" width="90px">
                 </div>
-                <ul class="nav-links">
+                <ul class="nav-links" style="width: 40vw;">
                     <li>
-                        <a href="">Home</a>
+                        <a href="{% url 'ecomapp:home' %}">Home</a>
                     </li>
                     <li>
-                        <a href="shop/">Shop</a>
+                        <a href="{% url 'ecomapp:shop' %}">Shop</a>
                     </li>
                     <li>
                         <a href="#">Profile</a>
                     </li>
                     <li>
-                        <a href="#">About</a>
+                        <a href="{% url 'ecomapp:customerLogout' %}">logout</a>
                     </li>
                     <li>
-                        <a href="#">Contact Us</a>
+                        <a href="{% url 'ecomapp:about' %}">About</a>
                     </li>
-                    <li>
+                     <li>
                         <a href="{%url 'ecomapp:cart'%}">View Cart</a>
                     </li>
+                    
                 </ul>
                 <div class="burger">
                     <div class="line1"></div>
                     <div class="line2"></div>
                     <div class="line3"></div>
                 </div>
+        
                 {% if request.user.customer %}
                 {{ request.user.username }}
                 <a href="{% url 'ecomapp:customerLogout' %}">Logout</a>
                 
                 {% endif %}
             </nav>
+        
             <section class="opener">
                 <div class="col-1">
 
@@ -126,9 +129,7 @@
                     </div>
                 </div>
             </div>
-            <div class="footer">
-
-            </div>
+            
 
         </section>
     </div>

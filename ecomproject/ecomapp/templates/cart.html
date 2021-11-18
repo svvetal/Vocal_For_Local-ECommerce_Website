@@ -1,73 +1,13 @@
-<!DOCTYPE html>
 {%extends 'base.html'%}
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles-home.css' %}">
-    <link rel="stylesheet" href="{% static 'css/shop.css' %}">
-    <title>Shop</title>
-</head>
-
-<body>
-    <nav>
-        <div class="logo">
-            <img src="{% static 'images/TheLocalCartlogo.png'%}" width="90px">
-        </div>
-        <ul class="nav-links">
-            <li>
-                <a href="{% url 'ecomapp:home' %}">Home</a>
-            </li>
-            <li>
-                <a href="">Shop</a>
-            </li>
-            <li>
-                <a href="#">Profile</a>
-            </li>
-            <li>
-                <a href="{% url 'ecomapp:about' %}">About</a>
-            </li>
-            <li>
-                <a href="#">Contact Us</a>
-            </li>
-        </ul>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-        {% if request.user.customer %}
-        {{ request.user.username }}
-        <a href="{% url 'ecomapp:customerLogout' %}">Logout</a>
-        {% else %}
-        <a href="{url 'ecomapp:home'}"></a>
-        {% endif %}
-    </nav>
-
-
-
-    <div class="search-wrapper">
-        <div class="search">
-            <div class="search-form">
-
-                <form action="{% url 'ecomapp:search'%}" method="GET">
-                    <input type="text" name="keyword" placeholder="Search for groceries, clothing and more..." required>
-                    <button>Search Product</button>
-
-                </form>
-            </div>
-        </div>
-    </div>
-    <br><br><br>
-    <h2>My Cart</h2>
 {%block content%}
 <div class = "container">
     <div class = "row">
         <div class = "col-md-8">
-            <h4>Items in the cart</h4><hr>
+            <br><br>
+            <h3>Product added to Cart Successfully</h3>
+            <h1>My Cart</h1>
+            <br>
+            <hr>
             <table class = "table">
                 <thead>
                     <tr>
@@ -87,8 +27,8 @@
                         <td><img src="{{item.product.image.url}}" width="100px"></td>
                         <td>{{ item.product.title }}</td>
                         <td>{{ item.quantity }}</td>
-                        <td>{{ item.product.selling_price }}</td>
-                        <td>{{item.subtotal}}</td>
+                        <td>{{item.product.selling_price}}</td>
+                        <td>{{ item.subtotal }}</td>
                         <td>
                             <a href="{%url 'ecomapp:managecart' item.id%}?action=inc" class = "btn btn-primary">+</a>
                             <a href="{%url 'ecomapp:managecart' item.id%}?action=dec" class = "btn btn-warning"> -</a>
@@ -102,10 +42,10 @@
                         
                         </tr>
                 </tbody>
-<button class = "btn btn-success">Proceed to buy</button>
+
+                <button class="btn btn-info">Proceed to buy</button>
+                <br><br>
 
 {%endblock%}
 
 
-</body>
-</html>
