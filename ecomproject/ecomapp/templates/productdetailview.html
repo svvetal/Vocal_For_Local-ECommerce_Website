@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+
+{%block title %}{{product.title}}{%endblock%}
+
+{%block content%}
+<div class = "container-item">
+    <div class="prod-image">
+        <img src = "{{product.image.url}}" width="600px" height="600px">
+    </div>
+    <div class="prod-info">
+        <h1>{{product.title}}</h1>
+        <div class="prod-desc">
+            
+            <p>{{product.description}}</p>
+            <p>{{product.warranty}}</p>
+            <script type = "text/javascript">
+                var price = {{product.selling_price}};
+                var new_price = {{product.marked_price}};
+                var discount = new_price - price;
+                document.write("<h3>Total Discount: " + discount + "</h3>");
+            </script>
+        </div>
+        <div class="button_container">
+            <button class="button"><a href="{%url 'ecomapp:addtocart' product.id%}">Add to Cart</a></button>
+            <button class="button"><a href="">Buy Now!</a></button>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

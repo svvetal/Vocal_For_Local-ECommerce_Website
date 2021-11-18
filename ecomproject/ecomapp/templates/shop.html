@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles-home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop.css' %}">
+    <title>Shop</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="{% static 'images/TheLocalCartlogo.png'%}" width="90px">
+        </div>
+        <ul class="nav-links" style="width: 40vw;">
+            <li>
+                <a href="{% url 'ecomapp:home' %}">Home</a>
+            </li>
+            <li>
+                <a href="">Shop</a>
+            </li>
+            <li>
+                <a href="#">Profile</a>
+            </li>
+            <li>
+                <a href="{% url 'ecomapp:about' %}">About</a>
+            </li>
+            <li>
+                <a href="#">Contact Us</a>
+            </li>
+            <li>
+                <a href="{% url 'ecomapp:cart' %}">View Cart</a>
+            </li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        {% if request.user.customer %}
+        {{ request.user.username }}
+        <a href="{% url 'ecomapp:customerLogout' %}">Logout</a>
+        
+        {% endif %}
+    </nav>
+
+
+
+    <div class="search-wrapper">
+        <div class="search">
+            <div class="search-form">
+
+                <form action="{% url 'ecomapp:search'%}" method="GET" style="display: flex; justify-content: space-between;">
+                    <input type="text" name="keyword" placeholder="Search for groceries, clothing and more..." required>
+                    <button class="btn btn-success">Search Product</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+    {% for cat in allcategories %}
+    <div class="shops-wrapper">
+        <h1>{{cat.title}}</h1>
+        <div class="card-wrapper">
+            {% for p in cat.product_set.all %}
+            <div class="card" style="height: 20%; width: 20%">
+                <div class="image">
+                    <img src="{{p.image.url}}" class="img-fluid"
+                        style="height : 100% ; width : 100% ; object-fit: cover;">
+                </div>
+                <div class="Description">
+                    <h3><a href="{%url 'ecomapp:productdetailview' p.slug%}" style="text-decoration: none; color: black;">{{p.title}}</a></h3>
+                    <p>Price : <strike>Rs. {{p.marked_price}}</strike>Rs. {{p.selling_price}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+
+    <script src="{% static 'app.js' %}"></script>
+
+</body>
+
+</html>

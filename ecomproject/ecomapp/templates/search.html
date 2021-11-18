@@ -1,0 +1,55 @@
+
+{% extends 'base.html' %}
+{% block content%}
+    <div class="search-wrapper">
+        <div class="search">
+            <div class="search-form">
+            <form action = "{% url 'ecomapp:search'%}" method = "GET" style="display: flex;justify-content: space-between;">
+                <input type="text" name = "keyword" placeholder="Search for groceries, clothing and more..."required>
+                <button class="btn btn-success">Search Product</button>
+            </form>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+    {% for cat in allcategories %}
+    <div class="shops-wrapper">
+        <h1>{{cat.title}}</h1>
+        <div class="card-wrapper">
+            {% for p in cat.product_set.all %}
+            <div class="card">
+                <div class="image">
+                    <img src="{{p.image.url}}" class="img-fluid"
+                        style="height : 100% ; width : 100% ; object-fit: cover;">
+                </div>
+                <div class="Description">
+                    <h3>{{p.title}}</h3>
+                    <p>Price : <strike>Rs. {{p.marked_price}}</strike>Rs. {{p.selling_price}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+
+
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-md-12">
+                <h1>Search results for ...<span class = "text-info" style = "color:blue">"{{request.GET.keyword}}"</span></h1>
+                <hr>
+                {%for result in results%}
+                <div class = "col-md-3">
+                    <div class = "card">
+                        <img src = "{{result.image.url}}" class = "card-img-top">
+                        <div class = "card-body">
+                            <h2 class = "card-title"><a href = "{%url 'ecomapp:productdetailview' result.slug%}">{{result.title}}</a></h2>
+                            <p class = "card-text">{{result.description}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
