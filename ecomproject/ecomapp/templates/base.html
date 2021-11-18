@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{% static 'css/styles-home.css' %}">
     <link rel="stylesheet" href="{% static 'css/register.css' %}">
     <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop.css'%}">
+    <link rel="stylesheet" href="{% static 'css/detailview.css'%}">
     
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -28,7 +30,7 @@
         <div class="logo">
             <img src="{% static 'images/TheLocalCartlogo.png'%}" width="90px">
         </div>
-        <ul class="nav-links">
+        <ul class="nav-links" style="width: 40vw;">
             <li>
                 <a href="{% url 'ecomapp:home' %}">Home</a>
             </li>
@@ -54,6 +56,12 @@
             <div class="line2"></div>
             <div class="line3"></div>
         </div>
+
+        {% if request.user.customer %}
+        {{ request.user.username }}
+        <a href="{% url 'ecomapp:customerLogout' %}">Logout</a>
+        
+        {% endif %}
     </nav>
 
 
