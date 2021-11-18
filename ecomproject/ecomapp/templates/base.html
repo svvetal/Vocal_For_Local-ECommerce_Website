@@ -62,6 +62,9 @@
                 {% if request.user.customer %}
                 <p style="font-weight:bolder ; color : black;">{{ request.user.username }}</p>
                 {% endif %}
+                {% if request.user.seller %}
+                <p style="font-weight:bolder ; color : black;">{{ request.user.username }}</p>
+                {% endif %}
             </li>
             
         </ul>
