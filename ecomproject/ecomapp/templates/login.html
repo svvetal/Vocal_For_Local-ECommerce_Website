@@ -9,7 +9,7 @@
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/styles-home.css' %}">
-  <link rel="stylesheet" href="{% static 'login.css' %}">
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
   <title>Login</title>
 </head>
 
@@ -17,31 +17,43 @@
 
   <nav>
     <div class="logo">
-      <img src="{% static 'images/TheLocalCartlogo.png' %}" width="90px">
+      <img src="{% static 'images/TheLocalCartlogo.png'%}" width="90px">
     </div>
-    <ul class="nav-links">
+    <ul class="nav-links" style="width: 40vw;">
       <li>
-        <a href="shop/">Shop</a>
+        <a href="{% url 'ecomapp:home' %}">Home</a>
+      </li>
+      <li>
+        <a href="{% url 'ecomapp:shop' %}">Shop</a>
       </li>
       <li>
         <a href="#">Profile</a>
       </li>
       <li>
-        <a href="#">logout</a>
+        <a href="{% url 'ecomapp:customerLogout' %}">logout</a>
       </li>
       <li>
-        <a href="#">About</a>
+        <a href="{% url 'ecomapp:about' %}">About</a>
       </li>
       <li>
-        <a href="#">Contact Us</a>
+        <a href="{%url 'ecomapp:cart'%}">View Cart</a>
       </li>
+
     </ul>
     <div class="burger">
       <div class="line1"></div>
       <div class="line2"></div>
       <div class="line3"></div>
     </div>
+
+    {% if request.user.customer %}
+    {{ request.user.username }}
+    <a href="{% url 'ecomapp:customerLogout' %}">Logout</a>
+
+    {% endif %}
   </nav>
+
+
   <div class="login-container">
     <section class="h-100 gradient-form">
       <div class="container py-5">
@@ -63,12 +75,12 @@
                       {% if error %}
                       <li style="color: red;">{{ error }}</li>
                       {% endif %}
-                      <button style="color: white;"
-                        class="btn btn-success btn-block btn-lg gradient-custom-4">Log In</button>
+                      <button style="color: white;" class="btn btn-success btn-block btn-lg gradient-custom-4">Log
+                        In</button>
 
                       <div class="d-flex align-items-center justify-content-center pb-4">
-                        <p class="mb-0 me-2">Don't have an account??</p>
-                        <a href="{% url 'ecomapp:sellerregister' %}">Join Now</a>
+                        <p class="mb-0 me-2">Don't have an account?</p>
+                        <a href="{% url 'ecomapp:customerregistration' %}">Join Now</a>
                       </div>
                     </form>
                   </div>
