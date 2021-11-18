@@ -28,7 +28,7 @@
                 <div class="logo">
                     <img src="{% static 'images/TheLocalCartlogo.png'%}" width="90px">
                 </div>
-                <ul class="nav-links" style="width: 40vw;">
+                <ul class="nav-links" style="width: 50vw;">
                     <li>
                         <a href="{% url 'ecomapp:home' %}">Home</a>
                     </li>
@@ -44,36 +44,47 @@
                     <li>
                         <a href="{% url 'ecomapp:about' %}">About</a>
                     </li>
-                     <li>
+                    <li>
                         <a href="{%url 'ecomapp:cart'%}">View Cart</a>
                     </li>
-                    
+                    <li>
+                        <span><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                            <path fill-rule="evenodd"
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                        </svg></span>
+                    </li>
+                    <li>
+                        {% if request.user.customer %}
+                        <p style="font-weight:bolder ; color : black;">{{ request.user.username }}</p>
+                        {% endif %}
+                    </li>
+
                 </ul>
                 <div class="burger">
                     <div class="line1"></div>
                     <div class="line2"></div>
                     <div class="line3"></div>
                 </div>
-        
-                {% if request.user.customer %}
-                {{ request.user.username }}
-                <a href="{% url 'ecomapp:customerLogout' %}">Logout</a>
-                
-                {% endif %}
             </nav>
-        
+
             <section class="opener">
                 <div class="col-1">
 
                     <div class="content">
                         <h1>Welcome,</h1>
                         <h1>to TheLocalCart</h1>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem ad magnam odio, sapiente et obcaecati
-                            repellat facilis earum ea accusamus eaque unde commodi delectus fuga voluptatibus maiores porro sit
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem ad magnam odio, sapiente et
+                            obcaecati
+                            repellat facilis earum ea accusamus eaque unde commodi delectus fuga voluptatibus maiores
+                            porro sit
                             omnis.</p>
                         <div class="button-container">
-                            <button class="button"><a href="register/" style="text-decoration: none; color: white;">Register</a></button>
-                            <button class="button"><a href="login/" style="text-decoration: none; color: white;">Sign In</a></button>
+                            <button class="button"><a href="register/"
+                                    style="text-decoration: none; color: white;">Register</a></button>
+                            <button class="button"><a href="login/" style="text-decoration: none; color: white;">Sign
+                                    In</a></button>
                         </div>
                     </div>
 
@@ -92,21 +103,25 @@
                 </div>
                 <div class="part-2">
                     <div class="part-2-inside">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere quis dolore illo, quasi nulla alias
-                            similique in recusandae aut. Velit rerum fugit porro non magnam excepturi qui, maiores eum pariatur?
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere quis dolore illo, quasi
+                            nulla alias
+                            similique in recusandae aut. Velit rerum fugit porro non magnam excepturi qui, maiores eum
+                            pariatur?
                         </p>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="row2">
                 <div class="part-2">
                     <div class="part-2-inside">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere quis dolore illo, quasi nulla alias
-                            similique in recusandae aut. Velit rerum fugit porro non magnam excepturi qui, maiores eum pariatur?
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere quis dolore illo, quasi
+                            nulla alias
+                            similique in recusandae aut. Velit rerum fugit porro non magnam excepturi qui, maiores eum
+                            pariatur?
                         </p>
                     </div>
-                    
+
                 </div>
                 <div class="part-1">
                     <div class="inner">
@@ -129,7 +144,7 @@
                     </div>
                 </div>
             </div>
-            
+
 
         </section>
     </div>
