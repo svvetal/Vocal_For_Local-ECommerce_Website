@@ -34,6 +34,11 @@ class ContactView(TemplateView):
 class ShopView(TemplateView):
     template_name = "shop.html"
 
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        context['allcategories'] = Category.objects.all()
+        return context
+
 class CustomerRegistrationView(CreateView):
     template_name = "customerregistration.html"
     form_class = CustomerRegistrationForm
