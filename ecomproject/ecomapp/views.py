@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from django.views.generic import TemplateView , CreateView , View , FormView
 from django.urls import reverse_lazy
 from .models import *
-from .forms import CustomerRegistrationForm , CustomerLoginForm
+from .forms import CustomerRegistrationForm , CustomerLoginForm, SellerRegistrationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login , logout
 from django.db.models import Q
@@ -82,6 +82,20 @@ class CustormerRegisterView(CreateView):
 
 class SellerRegisterView(CreateView):
     template_name = "register-seller.html"
+    form_class = SellerRegistrationForm
+    success_url = reverse_lazy("ecomapp:selleradmin")
+
+    def form_valid(self, form):
+        username = form.cleaned_data.get("username")
+        password = form.cleaned_data.get("password")
+        email = form.cleaned_data.get("email")
+        user = User.objects.create_user(username , email , password)
+        form.instance.user = user
+        login(self.request , user)
+        return super().form_valid(form)
+
+class SellerAdminView(TemplateView):
+    template_name = "seller-admin.html"
 
 class SearchView(TemplateView):
     template_name = "search.html"
