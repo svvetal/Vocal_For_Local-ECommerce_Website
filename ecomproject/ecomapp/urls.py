@@ -15,4 +15,5 @@ urlpatterns = [
     path('register/register-seller/' , SellerRegisterView.as_view() , name = "sellerregister"),
     path('search/',SearchView.as_view(),name="search"),
     path('product/<slug:slug>/',ProductDetailView.as_view(),name="productdetailview"),
+    path('seller-admin/' , SellerAdminView.as_view() , name = "selleradmin")
 ]
