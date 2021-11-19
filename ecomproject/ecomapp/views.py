@@ -249,3 +249,26 @@ class ManageCartView(View):
             pass
         return redirect("ecomapp:cart")
 
+class SellerProfileView(TemplateView):
+    template_name = "profile.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        context['sellerdetails'] = Seller.objects.all()
+        return context
+
+class CustomerProfileView(TemplateView):
+    template_name = "profile.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        context['customerdetails'] = Customer.objects.all()
+        return context

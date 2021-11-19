@@ -39,9 +39,6 @@
                 <a href="{% url 'ecomapp:shop' %}">Shop</a>
             </li>
             <li>
-                <a href="#">Profile</a>
-            </li>
-            <li>
                 <a href="{% url 'ecomapp:customerLogout' %}">logout</a>
             </li>
             <li>
@@ -49,6 +46,14 @@
             </li>
              <li>
                 <a href="{%url 'ecomapp:cart'%}">View Cart</a>
+            </li>
+            <li>
+                {% if request.user.seller %}
+                <a href="{% url 'ecomapp:sellerprofile' %}">Profile</a>
+                {% endif %}
+                {% if request.user.customer %}
+                <a href="{% url 'ecomapp:customerprofile' %}">Profile</a>
+                {% endif %}
             </li>
             <li>
                 <span><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
