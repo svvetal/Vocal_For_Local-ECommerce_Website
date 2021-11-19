@@ -19,6 +19,22 @@
                 var discount = new_price - price;
                 document.write("<h3>Total Discount: " + discount + "</h3>");
             </script>
+            <p>Seller: {{product.seller}}</p>
+            <p>Shop Name: {{product.seller.shop_name}}</p>
+            <p>Shop Address: {{product.seller.address}}</p>
+            <script type = "text/javascript">
+                    var stock = {{product.stock}};
+                    if(stock == 0){
+                        document.write("<h3>Out of Stock</h3>");
+                    }
+                    else if(stock<=5){
+                        document.write("<h3>Only " + stock + " left in stock</h3>");
+                    }
+                    else{
+                        document.write("<h3>In Stock</h3>");
+                    }
+                
+            </script>
         </div>
         <div class="button_container">
             <button class="button"><a href="{%url 'ecomapp:addtocart' product.id%}">Add to Cart</a></button>
@@ -28,3 +44,4 @@
 </div>
 
 {%endblock%}
+

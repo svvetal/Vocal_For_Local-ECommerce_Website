@@ -55,6 +55,12 @@
                 <a href="{% url 'ecomapp:customerprofile' %}">Profile</a>
                 {% endif %}
             </li>
+            <li>
+                {% if request.user.seller %}
+                <a href="{% url 'ecomapp:selleradmin' %}">My Shop</a>
+                {% endif %}
+            </li>
+
            
             <li>
                 <span><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"

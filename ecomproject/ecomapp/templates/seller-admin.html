@@ -1,5 +1,35 @@
 {% extends 'base.html' %}
 {% block title %}Seller-admin{% endblock %}
 {% block content %}
+<h3 class ="btn btn-success" href="{%url 'ecomapp:add-product'%}">Add items to your shop </h3>
+<br> <br>
+ {% if allproducts %}
+    
+    <h2>Your Shop Products</h2>
+            <table class="table is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Current Stock </th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
+                <tbody>
+                    {% for product in allproducts %}
+                        <tr>
+                            <td>{{ product.title }}</a></td>
+                            <td>{{ product.selling_price}}</td>
+                            <td>{{ product.stock}}</td>
+
+                            
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h2>You don't have any products yet...</h2>
+        {% endif %}
+    </div>
 {% endblock %}

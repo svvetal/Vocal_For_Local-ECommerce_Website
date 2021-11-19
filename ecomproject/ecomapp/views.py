@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from django.views.generic import TemplateView , CreateView , View , FormView , DetailView
 from django.urls import reverse_lazy
 from .models import *
-from .forms import CustomerRegistrationForm , CustomerLoginForm, SellerLoginForm, SellerRegistrationForm
+from .forms import CustomerRegistrationForm , CustomerLoginForm, SellerLoginForm, SellerRegistrationForm,ProductForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login , logout
 from django.db.models import Q
@@ -125,7 +125,8 @@ class SellerAdminView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['allproducts'] = Product.objects.all()
+        context['allproducts'] = Product.objects.filter(seller = self.request.user.seller)
+        print(self.request.user.seller,"------------------------------")
         return context
 
 class SearchView(TemplateView):
@@ -269,4 +270,19 @@ class CustomerProfileView(DetailView):
 
     def get_object(self):
         return self.request.user.customer
-    
+
+@method_decorator(login_required, name='dispatch')
+class AddProductView(CreateView):
+    def get(self, request, *args, **kwargs):
+        form = ProductForm()
+        return render(request, "add-product.html", {"form": form})
+
+    def post(self, request, *args, **kwargs):
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save(commit=False)
+            product.seller = request.user.seller
+            print(request.user.seller.full_name)
+            product.save()
+            return redirect("ecomapp:selleradmin")
+        return render(request, "seller-admin.html", {"form": form})
