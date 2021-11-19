@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Seller-admin{% endblock %}
 {% block content %}
-<h3 class ="btn btn-success" href="{%url 'ecomapp:add-product'%}">Add items to your shop </h3>
+<a href="{%url 'ecomapp:add-product'%}" class = "btn btn-success">Add product to your shop</a>
 <br> <br>
  {% if allproducts %}
     
