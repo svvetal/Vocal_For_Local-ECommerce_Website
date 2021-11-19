@@ -13,8 +13,6 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles-home.css' %}">
     <link rel="stylesheet" href="{% static 'css/register.css' %}">
-    <link rel="stylesheet" href="{% static 'css/register.css' %}">
-    
     <link rel="stylesheet" href="{% static 'css/shop.css'%}">
     <link rel="stylesheet" href="{% static 'css/detailview.css'%}">
     <link rel="stylesheet" href="{% static 'css/about.css' %}">
@@ -31,12 +29,13 @@
         <div class="logo">
             <img src="{% static 'images/TheLocalCartlogo.png'%}" width="90px">
         </div>
-        <ul class="nav-links" style="width: 40vw;">
+        <ul class="nav-links" style="width: 50vw;">
             <li>
                 <a href="{% url 'ecomapp:home' %}">Home</a>
             </li>
             <li>
                 <a href="{% url 'ecomapp:shop' %}">Shop</a>
+
             </li>
             <li>
                 <a href="{% url 'ecomapp:customerLogout' %}">logout</a>
@@ -44,8 +43,9 @@
             <li>
                 <a href="{% url 'ecomapp:about' %}">About</a>
             </li>
-             <li>
-                <a href="{%url 'ecomapp:cart'%}">View Cart</a>
+            
+            <li>
+                <a href="{% url 'ecomapp:cart' %}">View Cart</a>
             </li>
             <li>
                 {% if request.user.seller %}
@@ -56,6 +56,13 @@
                 {% endif %}
             </li>
             <li>
+                {% if request.user.seller %}
+                <a href="{% url 'ecomapp:selleradmin' %}">My Shop</a>
+                {% endif %}
+            </li>
+
+           
+            <li>
                 <span><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                     class="bi bi-person-circle" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -65,13 +72,12 @@
             </li>
             <li>
                 {% if request.user.customer %}
-                <p style="font-weight:bolder ; color : black;">{{ request.user.username }}</p>
+                <p style=" color : black;">{{ request.user.username }}</p>
                 {% endif %}
                 {% if request.user.seller %}
-                <p style="font-weight:bolder ; color : black;">{{ request.user.username }}</p>
+                <p style=" color : black;">{{ request.user.username }}</p>
                 {% endif %}
             </li>
-            
         </ul>
         <div class="burger">
             <div class="line1"></div>

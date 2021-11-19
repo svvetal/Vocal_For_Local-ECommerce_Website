@@ -1,5 +1,5 @@
 from django import forms
-from .models import Customer, Seller
+from .models import Customer, Seller,Product
 from django.contrib.auth.models import User
 
 class CustomerRegistrationForm(forms.ModelForm):
@@ -71,3 +71,9 @@ class SellerLoginForm(forms.ModelForm):
 
         self.fields["username"].widget.attrs['class'] = 'form-control'
         self.fields["password"].widget.attrs['class'] = 'form-control'
+
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ["title" , "slug" , "category" , "description" , "image","marked_price","selling_price","warranty","id","stock"]

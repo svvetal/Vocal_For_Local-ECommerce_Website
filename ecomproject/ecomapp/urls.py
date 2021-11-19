@@ -22,5 +22,6 @@ urlpatterns = [
     path('seller-admin/' , SellerAdminView.as_view() , name = "selleradmin"),
     path('manage-cart/<int:cp_id>' , ManageCartView.as_view() , name = "managecart"),
     path('seller-profile/' , SellerProfileView.as_view() , name = "sellerprofile"),
-    path('customer-profile/' , CustomerProfileView.as_view() , name = "customerprofile")
+    path('customer-profile/' , CustomerProfileView.as_view() , name = "customerprofile"),
+    path('add-product/',AddProductView.as_view(),name="add-product"),
 ]

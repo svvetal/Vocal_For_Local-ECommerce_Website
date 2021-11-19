@@ -36,8 +36,10 @@
                     </tr>
                     {% endfor %}
                     <tr>
+                    {% if cart %}
                         <td colspan="5" align="right"> Total</td>
                         <td>Rs.{{cart.total}}</td>
+                    {% endif%}
                         
                         </tr>
                 </tbody>

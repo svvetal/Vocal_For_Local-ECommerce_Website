@@ -18,19 +18,21 @@
         <div class="logo">
             <img src="{% static 'images/TheLocalCartlogo.png'%}" width="90px">
         </div>
-        <ul class="nav-links" style="width: 40vw;">
+        <ul class="nav-links" style="width: 50vw;">
             <li>
                 <a href="{% url 'ecomapp:home' %}">Home</a>
             </li>
             <li>
                 <a href="{% url 'ecomapp:shop' %}">Shop</a>
+
+            </li>
+            <li>
+                <a href="{% url 'ecomapp:customerLogout' %}">logout</a>
             </li>
             <li>
                 <a href="{% url 'ecomapp:about' %}">About</a>
             </li>
-            <li>
-                <a href="#">Contact Us</a>
-            </li>
+            
             <li>
                 <a href="{% url 'ecomapp:cart' %}">View Cart</a>
             </li>
@@ -42,6 +44,7 @@
                 <a href="{% url 'ecomapp:customerprofile' %}">Profile</a>
                 {% endif %}
             </li>
+           
             <li>
                 <span><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                     class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -52,10 +55,10 @@
             </li>
             <li>
                 {% if request.user.customer %}
-                <p style="font-weight:bolder ; color : black;">{{ request.user.username }}</p>
+                <p style=" color : black;">{{ request.user.username }}</p>
                 {% endif %}
                 {% if request.user.seller %}
-                <p style="font-weight:bolder ; color : black;">{{ request.user.username }}</p>
+                <p style=" color : black;">{{ request.user.username }}</p>
                 {% endif %}
             </li>
         </ul>
@@ -65,6 +68,7 @@
             <div class="line3"></div>
         </div>
     </nav>
+
 
 
 
