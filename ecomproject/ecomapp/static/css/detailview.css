@@ -29,6 +29,7 @@
     left: 40px;
 }
 .prod-image img{
+    object-fit: contain;
 }
 .button_container{
     position: relative;

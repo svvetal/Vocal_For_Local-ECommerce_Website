@@ -154,10 +154,11 @@ nav{
     justify-content: flex-start;
     min-width: 50vw;
     height: 50vh;
-    
+   
 }
 
 .inner{
+    
     display: flex;
     align-items: center;
     justify-content: center;

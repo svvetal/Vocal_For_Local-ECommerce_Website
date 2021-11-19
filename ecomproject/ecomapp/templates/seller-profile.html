@@ -2,6 +2,38 @@
 {% block title %}Seller Profile{% endblock %}
 
 {% block content %}
+<div style="height: 92vh; width: 100vw; background-color: #b4d0de; display: flex; align-items: center;">
+    <div class="container" style="display: flex; justify-content: space-around; background-color:rgb(248, 239, 239); height: 75vh; border-radius: 12px;">
+        <div class="profile-image col-lg-6" style="display: flex;justify-content: center; align-items: center;">
+            <img src="{% static 'images/profile_pic.jpeg' %}" height="300px" style="border-radius: 50%; border: 3px solid #0aa682; padding: 5px;">
+        </div>
+        <div class="card col-lg-6" style="background-color: #0aa682; color: white; border-radius: 12px;justify-content:center; padding-left: 30px;">
+
+            <h2 style="color: white; font-size: 3.5rem;">
+                {{object.user.seller.user}}</h2>
+            <br>
+            <h5>Name :
+                 {{object.user.seller.full_name}}
+            </h5>
+            <br>
+            <h5>Address : 
+                 {{object.user.seller.address}}</h5>
+            <br>
+            <h5>Date of Joining:
+                 {{object.user.seller.joined_on}}
+            </h5>
+            <br>
+            <h5>Shop Name :
+                {{object.user.seller.shop_name}}</h5>
+            <br>
+            <h5>ID:
+                 {{object.user.seller.shop_id}}</h5>
+            <br>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
 <h3>NAME :
     {{object.user.seller.full_name}}
 </h3>
@@ -22,4 +54,3 @@
 <h3>SHOP ID :
     {{object.user.seller.shop_id}}</h3>
 <br>
-{% endblock %}

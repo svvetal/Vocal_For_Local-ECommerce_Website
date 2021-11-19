@@ -1,18 +1,30 @@
 {% extends 'base.html' %}
 {% block title %}Customer Profile{% endblock %}
-
 {% block content %}
-<h3>NAME :
-    {{object.user.customer.full_name}}
-</h3>
-<br>
-<h3>ADDRESS : 
-{{object.user.customer.address}}</h3>
-<br>
-<h3>USERNAME : 
-{{object.user.customer.user}}</h3>
-<br>
-<h3>DATE OF JONING :
-{{object.user.customer.joined_on}}
-</h3>
+
+{% load static %}
+
+<div style="height: 92vh; width: 100vw; background-color: #b4d0de; display: flex; align-items: center;">
+    <div class="container" style="display: flex; justify-content: space-around; background-color:rgb(248, 239, 239); height: 75vh; border-radius: 12px;">
+        <div class="profile-image col-lg-6" style="display: flex;justify-content: center; align-items: center;">
+            <img src="{% static 'images/profile_pic.jpeg' %}" height="300px" style="border-radius: 50%; border: 3px solid #0aa682; padding: 5px;">
+        </div>
+        <div class="card col-lg-6" style="background-color: #0aa682; color: white; border-radius: 12px;justify-content:center; padding-left: 30px;">
+
+            <h2 style="color: white; position: absolute; top: 100px; font-size: 3.5rem;">
+                {{object.user.customer.user}}</h2>
+            <br>
+            <h5>Name :
+                {{object.user.customer.full_name}}
+            </h5>
+            <br>
+            <h5>Address : 
+            {{object.user.customer.address}}</h5>
+            <br>
+            <h5>Date of Joining:
+            {{object.user.customer.joined_on}}
+            </h5>
+        </div>
+    </div>
+</div>
 {% endblock %}
