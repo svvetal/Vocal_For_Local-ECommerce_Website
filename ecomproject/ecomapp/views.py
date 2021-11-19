@@ -1,6 +1,6 @@
 from django.forms.forms import Form
 from django.shortcuts import render,redirect
-from django.views.generic import TemplateView , CreateView , View , FormView
+from django.views.generic import TemplateView , CreateView , View , FormView , DetailView
 from django.urls import reverse_lazy
 from .models import *
 from .forms import CustomerRegistrationForm , CustomerLoginForm, SellerLoginForm, SellerRegistrationForm
@@ -249,26 +249,24 @@ class ManageCartView(View):
             pass
         return redirect("ecomapp:cart")
 
-class SellerProfileView(TemplateView):
-    template_name = "profile.html"
+class SellerProfileView(DetailView):
+    template_name = "seller-profile.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
-    def get_context_data(self, **kwargs):
-        context =  super().get_context_data(**kwargs)
-        context['sellerdetails'] = Seller.objects.all()
-        return context
+    def get_object(self):
+        return self.request.user.seller
+        
 
-class CustomerProfileView(TemplateView):
-    template_name = "profile.html"
+class CustomerProfileView(DetailView):
+    template_name = "customer-profile.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
-    def get_context_data(self, **kwargs):
-        context =  super().get_context_data(**kwargs)
-        context['customerdetails'] = Customer.objects.all()
-        return context
+    def get_object(self):
+        return self.request.user.customer
+    

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Customer Profile{% endblock %}
+
+{% block content %}
+<h3>NAME :
+    {{object.user.customer.full_name}}
+</h3>
+<br>
+<h3>ADDRESS : 
+{{object.user.customer.address}}</h3>
+<br>
+<h3>USERNAME : 
+{{object.user.customer.user}}</h3>
+<br>
+<h3>DATE OF JONING :
+{{object.user.customer.joined_on}}
+</h3>
+{% endblock %}
