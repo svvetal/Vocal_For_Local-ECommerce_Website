@@ -22,7 +22,7 @@
                             <td>{{ product.title }}</a></td>
                             <td>{{ product.selling_price}}</td>
                             <td>{{ product.stock}}</td>
-
+                            
                             
                         </tr>
                     {% endfor %}
@@ -35,9 +35,7 @@
             {% for order in allorders %}
                 <tr>
                     <td>{{ order.ordered_by }}</a></td>
-                    <td>{{ order.shipping_address}}</td>
-
-                    
+                    <td>{{ order.shipping_address}}</td>    
                 </tr>
             {% endfor %}
         </tbody>

@@ -96,3 +96,11 @@ class CheckoutForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ["ordered_by" , "shipping_address" , "mobile" , "email"]
+
+    def __init__(self , *args , **kwargs):
+        super (CheckoutForm , self).__init__(*args , **kwargs)
+
+        self.fields["ordered_by"].widget.attrs['class'] = 'form-control'
+        self.fields["shipping_address"].widget.attrs['class'] = 'form-control'
+        self.fields["mobile"].widget.attrs['class'] = 'form-control'
+        self.fields["email"].widget.attrs['class'] = 'form-control'
