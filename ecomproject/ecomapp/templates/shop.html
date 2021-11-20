@@ -90,13 +90,13 @@
         <h1>{{cat.title}}</h1>
         <div class="card-wrapper">
             {% for p in cat.product_set.all %}
-            <div class="card" style="height: 20%; width: 20%">
+            <div class="card" style="height: 20%; width: 20%; border:2px solid rgb(6, 185, 6)">
                 <div class="image">
                     <img src="{{p.image.url}}" class="img-fluid"
-                        style="height : 100% ; width : 100% ; object-fit: cover;">
+                        style="height : 100% ; width : 100% ;">
                 </div>
-                <div class="Description">
-                    <h3><a href="{%url 'ecomapp:productdetailview' p.slug%}" style="text-decoration: none; color: black;">{{p.title}}</a></h3>
+                <div class="Description" style="border: none;">
+                    <h3 style="text-align: center;"><a href="{%url 'ecomapp:productdetailview' p.slug%}" style="text-decoration: none; color: black;">{{p.title}}</a></h3>
                     <p>Price : <strike>Rs. {{p.marked_price}}</strike>Rs. {{p.selling_price}}</p>
                 </div>
             </div>

@@ -2,11 +2,36 @@
 {%block title %}Add Product {%endblock%}
 
 {%block content%}
-<h1 class = "title">Add Product</h1>
-<form method = "post" action = "." enctype = "multipart/form-data">
-   {% csrf_token %}
-    {{form.as_p}}
+<div class="login-container">
+    <section class="h-100 gradient-form">
+        <div class="container py-5">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-6">
+                    <div class="card rounded-3 text-black">
+                        <div class="row g-0">
+                            <div class="col-lg-12">
+                                <div class="card-body p-md-5 mx-md-4">
 
-<button type = "submit" class = "btn btn-primary">Add Product</button>
+                                    <div class="text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
+                                          </svg>
+                                    </div>
+                                    <h1 class="title" style="text-align: center;">Add Product</h1>
+                                    <form method="post" action="." enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {{form.as_p}}
+
+                                        <button type="submit" class="btn btn-primary" style="margin-left: 33%;">Add Product</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 
 {%endblock%}
