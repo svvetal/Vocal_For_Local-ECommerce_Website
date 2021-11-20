@@ -38,13 +38,6 @@
         </div>
         <div class="button_container">
             <button class="button"><a href="{%url 'ecomapp:addtocart' product.id%}">Add to Cart</a></button>
-            {% if request.user.customer %}
-            <button class="button"><a href="{% url 'ecomapp:checkout' %}">Buy Now!</a></button>
-            {% endif %}
-            {% if not request.user.customer %}
-            <button class="button"><a href="{% url 'ecomapp:customerlogin' %}">Buy Now!</a></button>
-            {% endif %}
-        </div>
     </div>
 </div>
 
