@@ -24,4 +24,5 @@ urlpatterns = [
     path('seller-profile/' , SellerProfileView.as_view() , name = "sellerprofile"),
     path('customer-profile/' , CustomerProfileView.as_view() , name = "customerprofile"),
     path('add-product/',AddProductView.as_view(),name="add-product"),
+    path('checkout/' , CheckOutView.as_view() , name="checkout"),
 ]
