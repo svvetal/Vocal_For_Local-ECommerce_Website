@@ -77,3 +77,17 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ["title" , "slug" , "category" , "description" , "image","marked_price","selling_price","warranty","id","stock"]
+
+    def __init__(self , *args , **kwargs):
+        super (ProductForm , self).__init__(*args , **kwargs)
+
+        self.fields["title"].widget.attrs['class'] = 'form-control'
+        self.fields["slug"].widget.attrs['class'] = 'form-control'
+        self.fields["category"].widget.attrs['class'] = 'form-control'
+        self.fields["description"].widget.attrs['class'] = 'form-control'
+        self.fields["image"].widget.attrs['class'] = 'form-control'
+        self.fields["marked_price"].widget.attrs['class'] = 'form-control'
+        self.fields["selling_price"].widget.attrs['class'] = 'form-control'
+        self.fields["warranty"].widget.attrs['class'] = 'form-control'
+        self.fields["id"].widget.attrs['class'] = 'form-control'
+        self.fields["stock"].widget.attrs['class'] = 'form-control'

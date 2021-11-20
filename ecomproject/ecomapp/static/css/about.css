@@ -19,7 +19,7 @@ h2{
 }
 
 .info{
-    background-color: #0aa682;
+    background-color: rgb(148, 148, 148);
     width: 70vw;
     height: 85vh;
     display: flex;
@@ -39,3 +39,4 @@ h2{
     width: 24.67vh;
     border-radius: 50%;
 }
+
