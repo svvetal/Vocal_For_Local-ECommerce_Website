@@ -43,6 +43,10 @@
                     {% endfor %}
                 </tbody>
 
+                {% if cart.cartproduct_set.all %}
+                <a href="{% url 'ecomapp:checkout' %}">
                 <button class="btn btn-info">Proceed to buy</button>
+                </a>
+                {% endif %}
                 <br><br>
                 {%endblock%}

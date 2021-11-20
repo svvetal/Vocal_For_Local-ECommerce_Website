@@ -1,5 +1,5 @@
 from django import forms
-from .models import Customer, Seller,Product
+from .models import Customer, Seller,Product, Order
 from django.contrib.auth.models import User
 
 class CustomerRegistrationForm(forms.ModelForm):
@@ -91,3 +91,8 @@ class ProductForm(forms.ModelForm):
         self.fields["warranty"].widget.attrs['class'] = 'form-control'
         self.fields["id"].widget.attrs['class'] = 'form-control'
         self.fields["stock"].widget.attrs['class'] = 'form-control'
+
+class CheckoutForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ["ordered_by" , "shipping_address" , "mobile" , "email"]

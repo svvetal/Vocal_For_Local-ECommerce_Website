@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from django.views.generic import TemplateView , CreateView , View , FormView , DetailView
 from django.urls import reverse_lazy
 from .models import *
-from .forms import CustomerRegistrationForm , CustomerLoginForm, SellerLoginForm, SellerRegistrationForm,ProductForm
+from .forms import CheckoutForm, CustomerRegistrationForm , CustomerLoginForm, SellerLoginForm, SellerRegistrationForm,ProductForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login , logout
 from django.db.models import Q
@@ -126,7 +126,7 @@ class SellerAdminView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['allproducts'] = Product.objects.filter(seller = self.request.user.seller)
-        print(self.request.user.seller,"------------------------------")
+        context['allorders'] = Order.objects.filter(seller = self.request.user.seller)
         return context
 
 class SearchView(TemplateView):
@@ -146,7 +146,6 @@ class SearchView(TemplateView):
 class ProductDetailView(TemplateView):
     template_name = "productdetailview.html"
 
-    @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -286,3 +285,33 @@ class AddProductView(CreateView):
             product.save()
             return redirect("ecomapp:selleradmin")
         return render(request, "seller-admin.html", {"form": form})
+
+class CheckOutView(CreateView):
+    template_name = "checkout.html"
+    form_class = CheckoutForm
+    success_url = reverse_lazy("ecomapp:home")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        cart_id = self.request.session.get("cart_id" , None)
+        if cart_id:
+            cart_obj = Cart.objects.get(id = cart_id)
+        else :
+            cart_obj = None
+        context['cart'] = cart_obj
+        return context
+
+    def form_valid(self , form):
+        cart_id = self.request.session.get("cart_id")
+        if cart_id:
+            cart_obj = Cart.objects.get(id = cart_id)
+            form.instance.cart = cart_obj
+            form.instance.subtotal = cart_obj.total
+            form.instance.discount = 0
+            form.instance.total = cart_obj.total
+            form.instance.order_status = 'Order Received'
+            del self.request.session['cart_id']
+        else:
+            return redirect("ecomapp:home")
+        return super().form_valid(form)
+

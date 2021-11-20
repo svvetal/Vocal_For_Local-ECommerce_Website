@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 class Customer(models.Model):
@@ -71,20 +73,27 @@ ORDER_STATUS = (
     ("Order Cancelled" , "Order Cancelled"),
 )
 
+
+def validate_Phone_Number(value , length = 10):
+    if len(str(value)) != 10 :
+        raise ValidationError("This is not a Valid Phone Number")
+
 class Order(models.Model):
     cart = models.OneToOneField(Cart, on_delete=models.CASCADE)
     ordered_by = models.CharField(max_length=200)
     shipping_address = models.CharField(max_length=200)
-    mobile = models.CharField(max_length=10)
+    mobile = models.CharField(max_length=10 , validators=[validate_Phone_Number])
     email = models.EmailField(null=True, blank=True)
     subtotal = models.PositiveIntegerField()
     discount = models.PositiveIntegerField()
     total = models.PositiveIntegerField()
     order_status = models.CharField(max_length=50 , choices=ORDER_STATUS)
     created_at = models.DateTimeField(auto_now_add=True)
+    seller = models.ForeignKey(Seller ,on_delete=models.CASCADE,default = 1)
 
     def __str__(self):
         return "Order : " + str(self.id)
 
 
+    
 
