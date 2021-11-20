@@ -71,16 +71,16 @@
             <div class="line3"></div>
         </div>
     </nav>
-
+    <div style="margin-top: 15%; margin-left: 35%">
     <div class="reg-container">
         <h1>What do you want to Login As</h1>
         <br><br><br>
-        <div class="buttonContainer">
-            <button class="button"><a href="{% url 'ecomapp:customerlogin' %}" style="text-decoration: none; color: white;"><h2>Customer</h2></a></button>
+        <div class="buttonContainer" style="margin-left: 7% ;">
+            <button class="button" style="width: 16%;"><a href="{% url 'ecomapp:customerlogin' %}" style="text-decoration: none; color: white;"><h2>Customer</h2></a></button>
             
-            <button class="button"><a href="{% url 'ecomapp:sellerlogin' %}" style="text-decoration: none; color: white;"><h2>Seller</h2></a></button>
+            <button class="button" style="width: 16%;"><a href="{% url 'ecomapp:sellerlogin' %}" style="text-decoration: none; color: white;"><h2>Seller</h2></a></button>
         </div>
-
+    </div>
     </div>
 
     <script src="{% static 'app.js' %}" ></script>
