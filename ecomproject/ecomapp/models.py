@@ -89,6 +89,7 @@ class Order(models.Model):
     total = models.PositiveIntegerField()
     order_status = models.CharField(max_length=50 , choices=ORDER_STATUS)
     created_at = models.DateTimeField(auto_now_add=True)
+    seller = models.ForeignKey(Seller ,on_delete=models.CASCADE,default = 1)
 
     def __str__(self):
         return "Order : " + str(self.id)

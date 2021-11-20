@@ -126,7 +126,7 @@ class SellerAdminView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['allproducts'] = Product.objects.filter(seller = self.request.user.seller)
-        print(self.request.user.seller,"------------------------------")
+        context['allorders'] = Order.objects.filter(seller = self.request.user.seller)
         return context
 
 class SearchView(TemplateView):

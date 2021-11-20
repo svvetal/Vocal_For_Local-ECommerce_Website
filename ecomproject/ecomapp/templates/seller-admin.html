@@ -31,5 +31,15 @@
         {% else %}
             <h2>You don't have any products yet...</h2>
         {% endif %}
+        <tbody>
+            {% for order in allorders %}
+                <tr>
+                    <td>{{ order.ordered_by }}</a></td>
+                    <td>{{ order.shipping_address}}</td>
+
+                    
+                </tr>
+            {% endfor %}
+        </tbody>
     </div>
 {% endblock %}
